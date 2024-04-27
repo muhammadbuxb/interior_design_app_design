@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:interior_designer/pages/cart_page.dart';
 import 'package:interior_designer/pages/details_page.dart';
 import 'package:interior_designer/resources/utiles.dart';
 
@@ -56,7 +57,9 @@ class _HomePageState extends State<HomePage> {
                 size: 30,
               )),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage() ));
+              },
               icon: Icon(
                 Icons.shopping_cart_outlined,
                 size: 30,

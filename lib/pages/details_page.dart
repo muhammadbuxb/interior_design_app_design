@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:interior_designer/pages/cart_page.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final String title;
@@ -16,6 +18,7 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   String selectedColor = '';
+  double value = 3.5;
 
   List<int> color = [1, 2, 3];
   @override
@@ -23,9 +26,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     return Scaffold(
       bottomSheet: Container(
         height: 70,
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3)
-        ),
+        decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3)),
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,10 +36,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
-              
-                onPressed: () {}, 
+                onPressed: () {},
                 child: Text(
-                  'Checkout',
+                  'Add to Cart',
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 ))
           ],
@@ -155,6 +155,68 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   SizedBox(
                     height: 20,
                   ),
+                  
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.grey[300],
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey[200],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 40),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.grey[100],
+                              child: Center(
+                                child: Text('4+'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      RatingStars(
+                        axis: Axis.horizontal,
+                        value: value,
+                        onValueChanged: (v) {
+                          //
+                          setState(() {
+                            value = v;
+                          });
+                        },
+                        starCount: 5,
+                        starSize: 20,
+                        valueLabelColor: const Color(0xff9b9b9b),
+                        valueLabelTextStyle: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 12.0),
+                        valueLabelRadius: 10,
+                        maxValue: 5,
+                        starSpacing: 2,
+                        maxValueVisibility: true,
+                        valueLabelVisibility: true,
+                        animationDuration: Duration(milliseconds: 1000),
+                        valueLabelPadding: const EdgeInsets.symmetric(
+                            vertical: 1, horizontal: 8),
+                        valueLabelMargin: const EdgeInsets.only(right: 8),
+                        starOffColor: const Color(0xffe7e8ea),
+                        starColor: Colors.yellow,
+                      ),
+                    ],
+                  ),
+                SizedBox(
+                    height: 20,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -164,7 +226,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ),
                     ),
                   ),
-                ]),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ]),
               ),
             ],
           ),
@@ -184,7 +249,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 ),
                 CircleAvatar(
                   child: IconButton(
-                      onPressed: () {},
+                     onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CartPage() ));
+              },
                       icon: Icon(Icons.shopping_cart_outlined)),
                   radius: 25,
                   backgroundColor: Colors.white,

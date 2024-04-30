@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interior_designer/resources/utiles.dart';
 
 class AppTheme {
   ThemeData lightTheme = ThemeData(
@@ -16,8 +15,8 @@ class AppTheme {
   ThemeData darkTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       centerTitle: true,
-      backgroundColor: Colors.green,
-      foregroundColor: Colors.blueGrey,
+      backgroundColor: Colors.black,
+      foregroundColor: Colors.green,
       iconTheme: const IconThemeData(color: Colors.white),
     ),
   );
